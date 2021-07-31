@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Registration</string>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+        <item>N/A</item>
+    </string-array>
+</resources>
