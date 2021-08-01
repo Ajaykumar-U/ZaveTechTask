@@ -26,16 +26,14 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
     private String[] gender;
     private TextInputEditText etRegistrationName,etRegistrationMobile,etRegistrationEmail,etRegistrationAddress;
     private Button btnSubmit;
+    ArrayAdapter arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         initId();
-        gender = getResources().getStringArray(R.array.gender);
-        ArrayAdapter ad = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,gender);
-        ad.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        etRegistrationGender.setAdapter(ad);
+        initAdapter();
         presenter.attachView(this);
 
         btnSubmit.setOnClickListener((v)->{
@@ -47,6 +45,13 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
             hideKeyBoard(v);
             presenter.validateUser(name,mobile,email,genderDiff,address);
         });
+    }
+
+    private void initAdapter() {
+        gender = getResources().getStringArray(R.array.gender);
+        arrayAdapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,gender);
+        arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        etRegistrationGender.setAdapter(arrayAdapter);
     }
 
     private void hideKeyBoard(View v) {
